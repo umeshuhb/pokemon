@@ -4,9 +4,9 @@ import { HttpClient } from '@angular/common/http';
 import {  EMPTY, Observable, forkJoin } from 'rxjs';
 import { catchError, map, mergeMap } from 'rxjs/operators';
 import { ApiResponse } from '../shared/models/common.model';
-import { IPokemonDetail, IPokemonGrid, IPokemonNameUrl } from '../pokemon-grid/pokemon.model';
 import { ApiConstants } from '../shared/constants/api.urls';
 import { DEFAULT_PAGE_SIZE } from '../shared/constants/app.const';
+import { IPokemonDetail, IPokemonGrid, IPokemonNameUrl } from '../pokemon/pokemon.model';
   
 @Injectable({
   providedIn: 'root'

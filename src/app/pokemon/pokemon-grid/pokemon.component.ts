@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { PokemonService } from '../services/pokemon.service';
-import { IPokemonDetail, IPokemonGrid, IPokemonNameUrl } from './pokemon.model';
 import { Subscription } from 'rxjs';
+import { PokemonService } from 'src/app/services/pokemon.service';
     
 @Component({
   selector: 'app-pokemon-grid',
