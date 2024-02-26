@@ -1,0 +1,105 @@
+<ng-container *ngIf="pokemon">
+    <div class="pb-5">
+        <div class="container-fluid pokemon-container">
+            <div class="row head">
+                <div class="col-sm-8 offset-sm-2">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="pt-5">
+                                <h1>{{pokemon.name | titlecase}}</h1>
+                                <ul class="list-group list-group-flush my-4" style="width: 24rem;">
+                                    <li class="list-group-item bg-transparent">Weight <b
+                                        class="float-end">{{pokemon.weight}}</b></li>
+                                    
+                                    <li class="list-group-item bg-transparent">Height <b
+                                            class="float-end">{{pokemon.height}}</b></li>
+                                    <li class="list-group-item bg-transparent">Experience 
+                                        <b class="float-end">{{pokemon.base_experience}}</b></li>
+                                    
+                                </ul>
+                        </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{pokemon.id}}.png"
+                                alt="" class="img-fluid d-block mx-auto" style="width: 300px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container my-3">
+        <div class="row">
+            <div class="col-sm-10 offset-sm-1 py-10">
+                <tabs-component>
+                    <tab tabTitle="Qualities">
+                        <ng-container *ngTemplateOutlet="tab1Template"></ng-container>
+                    </tab>
+                    <tab tabTitle="Evolution">
+                        <app-pokemon-evolution 
+                            [evolutions]="pokemon.evolutions"
+                            [name]="pokemon.name"
+                        ></app-pokemon-evolution>
+                    </tab>
+                </tabs-component>
+            </div>
+        </div>
+    </div>
+
+    <div class="position-absolute top-0 start-0">
+        <a class="btn btn-lg text-primary" [routerLink]="['/']">
+            <img src="assets/back-arrow.svg" color="text-primary" />
+        </a>
+    </div>
+
+    <ng-template #tab1Template>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h4 class="card-title">Stats</h4>
+                        <div *ngFor="let stat of pokemon.stats" class="row mt-3">
+                            <div class="col-sm-4">
+                                <h6 class="text-sm-end">{{stat.stat.name | titlecase}}</h6>
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="progress" style="height: 26px">
+                                    <div class="progress-bar progress-bar-filled" role="progressbar"
+                                        style="height: 26px;" [style.width]="stat.base_stat + '%'" aria-valuemin="0"
+                                        aria-valuemax="100">
+                                        <b>{{stat.base_stat}}</b>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h4 class="card-title">Abilities</h4>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li *ngFor="let ability of pokemon.abilities" class="list-group-item">
+                            {{ability.ability.name | titlecase}}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mb-3">
+            <div class="card-body">
+                <h4 class="card-title">Moves</h4>
+            </div>
+            <ul class="list-group list-group-flush d-block">
+                <li *ngFor="let move of pokemon.moves" class="list-group-item"
+                    style="width: 33.3%; display: inline-block;">
+                    {{move.move.name | titlecase}}
+                </li>
+            </ul>
+        </div>
+    </ng-template>
+</ng-container>

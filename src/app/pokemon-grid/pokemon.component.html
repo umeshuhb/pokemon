@@ -1,0 +1,38 @@
+<div class="overflow-hide">
+    <div class="pagination-container">
+        <div class="spinner" *ngIf="loading && !pokemons.length">
+            <div class="loader"></div>
+        </div>
+        <div class="container my-5" *ngIf="!loading || pokemons.length">
+            <div class="row">
+                <div class="col-xl-10 offset-xl-1">
+                    <div class="row">
+                        <h1 class="mb-3">Pokemons</h1>
+                        <div *ngFor="let pokemon of pokemons; let i = index;" class="col-md-4">
+                            <div class="card mb-3" [routerLink]="['/detail', pokemon.name]">
+                                <div class="bg-white rounded shadow-sm py-4 px-4">
+                                    <img src="{{pokemon.sprites['other'].dream_world.front_default}}" alt="" width="120"
+                                        class="img-fluid h-120 rounded-circle mb-3 img-thumbnail shadow-sm" />
+                                    <div class="row">
+                                        <div class="col-7 col-sm-7">
+                                            <h5 class="mt-2">{{pokemon.name | titlecase}}</h5>
+                                        </div>
+                                        <div class="col-5 col-sm-5 pl-0">
+                                            <span class="small float-end">Weight - <b>{{pokemon.weight}}</b></span>
+                                            <br />
+                                            <span class="small float-end">Height - <b>{{pokemon.height}}</b></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <button class="btn btn-sm btn-secondary w-25" (click)="fetchMoreData()">
+                        <div class="spinner-border spinner-border-sm" role="status" *ngIf="loading"></div>
+                        {{loading ? 'Loading...' : 'Load More'}}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>

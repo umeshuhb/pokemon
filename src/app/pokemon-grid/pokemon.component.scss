@@ -1,0 +1,25 @@
+.overflow-hide{
+    overflow: hidden;
+}
+.card{
+    cursor: pointer;
+    background: #eaf7ff !important
+}
+.h-120{
+    min-height: 120px; 
+    max-height: 120px
+}
+.pagination-container {
+    overflow: auto;
+    display: block;
+    .item {
+      min-height: 50px;
+      padding-bottom: 4px;
+      padding: 0 16px;
+      width: 100%;
+    }
+    .img-fluid.h-100{
+        height: 100px;
+        max-width: 140px;
+    }
+}
