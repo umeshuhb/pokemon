@@ -1,3 +1,5 @@
+import { IPokemonNameUrl } from "src/app/pokemon/pokemon.model";
+
 type ProviderKey = "name" | "url" | "id" ;
 
 type providers = Array<Record<ProviderKey, string>>;
@@ -20,5 +22,5 @@ export interface ApiResponse<T> {
     timeStamp: string;
     uri: string;
   }
-
+  
   

@@ -1,12 +1,12 @@
 <div class="overflow-hide">
-    <div class="pagination-container">
+    <div class="pagination-container" *ngIf="selectPokemonlistData$ | async as pokemons;">
         <div class="spinner" *ngIf="loading && !pokemons.length">
             <div class="loader"></div>
         </div>
-        <div class="container my-5" *ngIf="!loading || pokemons.length">
-            <div class="row">
+        <div class="container my-5">
+            <div class="row"> 
                 <div class="col-xl-10 offset-xl-1">
-                    <div class="row">
+                    <div class="row" *ngIf="pokemons && pokemons?.length">
                         <h1 class="mb-3">Pokemons</h1>
                         <div *ngFor="let pokemon of pokemons; let i = index;" class="col-md-4">
                             <div class="card mb-3" [routerLink]="['/detail', pokemon.name]">
@@ -18,9 +18,9 @@
                                             <h5 class="mt-2">{{pokemon.name | titlecase}}</h5>
                                         </div>
                                         <div class="col-5 col-sm-5 pl-0">
-                                            <span class="small float-end">Weight - <b>{{pokemon.weight}}</b></span>
+                                            <span class="small float-end"><span i18n="@@weightLbl">Weight</span> - <b>{{pokemon.weight}}</b></span>
                                             <br />
-                                            <span class="small float-end">Height - <b>{{pokemon.height}}</b></span>
+                                            <span class="small float-end"><span i18n="@@heightLbl">>Height</span> - <b>{{pokemon.height}}</b></span>
                                         </div>
                                     </div>
                                 </div>
@@ -29,10 +29,14 @@
                         
                     </div>
                     <button class="btn btn-sm btn-secondary w-25" (click)="fetchMoreData()">
-                        <div class="spinner-border spinner-border-sm" role="status" *ngIf="loading"></div>
-                        {{loading ? 'Loading...' : 'Load More'}}
+                        <div class="spinner-border spinner-border-sm" role="status" *ngIf="loading && pokemons.length"></div>
+                        <span *ngIf="loading; else loadMore;" i18n="@@loading" class="pl-2">Loading...</span>    
+                        
                     </button>
                 </div>
             </div>
         </div>
     </div>
+    <ng-template #loadMore>
+        <span i18n="@@loadmore">Load more</span>    
+    </ng-template>

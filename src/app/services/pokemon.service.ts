@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
      
-import {  EMPTY, Observable, forkJoin } from 'rxjs';
-import { catchError, map, mergeMap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { ApiResponse } from '../shared/models/common.model';
 import { ApiConstants } from '../shared/constants/api.urls';
 import { DEFAULT_PAGE_SIZE } from '../shared/constants/app.const';
-import { IPokemonDetail, IPokemonGrid, IPokemonNameUrl } from '../pokemon/pokemon.model';
+import { IPokemonDetail, IPokemonGrid } from '../pokemon/pokemon.model';
   
 @Injectable({
   providedIn: 'root'
@@ -14,16 +14,8 @@ import { IPokemonDetail, IPokemonGrid, IPokemonNameUrl } from '../pokemon/pokemo
 export class PokemonService {
   constructor(private httpClient: HttpClient) { }
 
-  private _pokemons: IPokemonDetail[] = [];
   private _next: string = '';
 
-  get pokemons(): IPokemonDetail[] {
-    return this._pokemons;
-  }
-  
-  set pokemons(pokemons: IPokemonDetail[]) {
-    this._pokemons = pokemons;
-  }
 
   get next(): string {
     return this._next;
@@ -40,40 +32,28 @@ export class PokemonService {
 
   getDetail(name: string): Observable<any> {
     const url = `${ApiConstants.FETCH_POKEMON_GRID()}/${name}`;
-    return this.httpClient.get<any>(url);
+    return this.httpClient.get<IPokemonDetail>(url);
   }
 
-  getPokemonsList(url?:string): Observable<any> {
+  getPokemonsList(url?:string) {
     return this.httpClient
-    .get<ApiResponse<IPokemonGrid>>(
+    .get<IPokemonGrid>(
       url ? url : ApiConstants.FETCH_POKEMON_GRID(),
       {
         params: {},
       }
     )
-    .pipe(
-      mergeMap((pokemonGrid:any)=> { 
-        const results = pokemonGrid.results;
-        return forkJoin(results.map(
-          (pokemon:IPokemonNameUrl) => this.fetchPokemonInfo(pokemon.url)
-        ))
-        .pipe(map( (pokemonsDetail) => { return { pokemonsDetail, pokemonGrid}}))
-      })
-    ).pipe(catchError(err => {
-      console.log(err);
-      return EMPTY;
-    }))
-    .pipe(map((pokemons) => pokemons))
+    .pipe(map((response) => response))
   }
 
-  fetchPokemonInfo(pokemonURL:string): Observable<IPokemonDetail>{
+  fetchPokemonInfo(pokemonURL:string){
    return this.httpClient
-    .get<IPokemonDetail>(
+    .get<ApiResponse<IPokemonDetail>>(
       pokemonURL,
       {
         params: {},
       }
-    )
+    ).pipe(map((pokemons) => pokemons))
   }
 
   getEvolution(id: number): Observable<any> {

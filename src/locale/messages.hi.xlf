@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="weightLbl" datatype="html">
+        <source>Weight</source>
+        <target>वज़न</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pokemon/components/pokemon-detail/pokemon-detail.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pokemon/components/pokemon-grid/pokemon.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="heightLbl" datatype="html">
+        <source>Height </source>
+        <target>ऊंचाई </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pokemon/components/pokemon-detail/pokemon-detail.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pokemon/components/pokemon-grid/pokemon.component.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="experienceLbl" datatype="html">
+        <source>Experience </source>
+        <target>अनुभव </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pokemon/components/pokemon-detail/pokemon-detail.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="qualitiesTabTitle" datatype="html">
+        <source>Qualities</source>
+        <target>गुण</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pokemon/components/pokemon-detail/pokemon-detail.component.html</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="evolutionTabTitle" datatype="html">
+        <source>Evolution</source>
+        <target>विकास </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pokemon/components/pokemon-detail/pokemon-detail.component.html</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="statsLbl" datatype="html">
+        <source>Stats</source>
+        <target>आँकड़े </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pokemon/components/pokemon-detail/pokemon-detail.component.html</context>
+          <context context-type="linenumber">61</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="abilitiesLbl" datatype="html">
+        <source>Abilities</source>
+        <target>क्षमताओं </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pokemon/components/pokemon-detail/pokemon-detail.component.html</context>
+          <context context-type="linenumber">82</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="movesLbl" datatype="html">
+        <source>Moves</source>
+        <target>चालें </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pokemon/components/pokemon-detail/pokemon-detail.component.html</context>
+          <context context-type="linenumber">95</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="loading" datatype="html">
+        <source>Loading...</source>
+        <target>लोड हो रहा है </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pokemon/components/pokemon-grid/pokemon.component.html</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="loadmore" datatype="html">
+        <source>Load more</source>
+        <target>और लोड करें </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pokemon/components/pokemon-grid/pokemon.component.html</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

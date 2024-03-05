@@ -3,19 +3,30 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "pokemon-app": {
+    "pokemon": {
       "projectType": "application",
       "schematics": {},
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
+      "i18n": {
+        "sourceLocale": {
+          "code": "en-US",
+          "baseHref": "/"
+        },
+        "locales": {
+          "fr": "src/locale/messages.fr.xlf",
+          "hi": "src/locale/messages.hi.xlf"
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/pokemon-app",
+            "outputPath": "dist/pokemon",
             "index": "src/index.html",
             "main": "src/main.ts",
+            "localize" : true,
             "polyfills": [
               "zone.js"
             ],
@@ -57,6 +68,7 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ],
+              
               "outputHashing": "all"
             },
             "development": {
@@ -66,6 +78,12 @@
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
+            },
+            "hi":{
+              "localize": ["hi"]             
+            },
+            "fr":{
+              "localize": ["fr"]             
             }
           },
           "defaultConfiguration": "production"
@@ -73,19 +91,27 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
-            "production": {
-              "browserTarget": "pokemon-app:build:production"
+              "production": {
+                "browserTarget": "pokemon:build:production"
+              },
+              "development": {
+                "browserTarget": "pokemon:build:development"
+              },
+              "hi": {
+                "browserTarget": "pokemon:build:hi"
             },
-            "development": {
-              "browserTarget": "pokemon-app:build:development"
-            }
+            "fr": {
+              "browserTarget": "pokemon:build:fr"
+            },
           },
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "pokemon-app:build"
+            "browserTarget": "pokemon:build",
+            "format": "xlf",
+            "outputPath": "src/locale"
           }
         },
         "test": {
