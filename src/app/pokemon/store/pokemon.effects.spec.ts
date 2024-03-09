@@ -8,10 +8,9 @@ import * as PoekomnActions from './pokemon.actions';
 import { cold, hot } from 'jasmine-marbles';
 import {
   IPokemonGrid,
-  IPokemonDetail,
-  IPokemonNameUrl
+  IPokemonDetail
 } from '../pokemon.model';
-import { evolutionDetail, mockPokemonDetailObj, mockPokemonGridObj } from './mockData';
+import { mockPokemonDetailObj, mockPokemonGridObj } from './mockData';
 
 describe('PokemonEffects', () => {
   let actions$: Observable<any>;

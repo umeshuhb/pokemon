@@ -128,9 +128,9 @@ export const mockPokemonDetailObj = {
     evolutions:[{ id: 2, name: "ivysaur"}]
   };
 
-  export const evolutionDetail  = {
-    "baby_trigger_item": null,
-    "chain": {
+  export const mockEvolutionDetail  = {
+    baby_trigger_item: null,
+    chain: {
         "evolution_details": [],
         "evolves_to": [
             {
@@ -207,5 +207,120 @@ export const mockPokemonDetailObj = {
             "url": "https://pokeapi.co/api/v2/pokemon-species/4/"
         }
     },
-    "id": 2
+    id: 2
 };
+
+export const mockPokemonSpecie = {
+        "base_happiness": 70,
+        "capture_rate": 45,
+        "color": {
+            "name": "yellow",
+            "url": "https://pokeapi.co/api/v2/pokemon-color/10/"
+        },
+        "egg_groups": [
+            {
+                "name": "bug",
+                "url": "https://pokeapi.co/api/v2/egg-group/3/"
+            }
+        ],
+        "evolution_chain": {
+            "url": "https://pokeapi.co/api/v2/evolution-chain/5/"
+        },
+        "evolves_from_species": {
+            "name": "kakuna",
+            "url": "https://pokeapi.co/api/v2/pokemon-species/14/"
+        },
+        "flavor_text_entries": [
+            {
+                "flavor_text": "It has three poisonous stingers on its forelegs and\nits tail. They are used to jab its enemy repeatedly.",
+                "language": {
+                    "name": "en",
+                    "url": "https://pokeapi.co/api/v2/language/9/"
+                },
+                "version": {
+                    "name": "x",
+                    "url": "https://pokeapi.co/api/v2/version/23/"
+                }
+            }],
+
+        "form_descriptions": [],
+        "forms_switchable": true,
+        "gender_rate": 4,
+        "genera": [
+            {
+                "genus": "どくばちポケモン",
+                "language": {
+                    "name": "ja-Hrkt",
+                    "url": "https://pokeapi.co/api/v2/language/1/"
+                }
+            }],
+
+        "generation": {
+            "name": "generation-i",
+            "url": "https://pokeapi.co/api/v2/generation/1/"
+        },
+        "growth_rate": {
+            "name": "medium",
+            "url": "https://pokeapi.co/api/v2/growth-rate/2/"
+        },
+        "habitat": {
+            "name": "forest",
+            "url": "https://pokeapi.co/api/v2/pokemon-habitat/2/"
+        },
+        "has_gender_differences": false,
+        "hatch_counter": 15,
+        "id": 15,
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "name": "beedrill",
+        "names": [
+            {
+                "language": {
+                    "name": "ja-Hrkt",
+                    "url": "https://pokeapi.co/api/v2/language/1/"
+                },
+                "name": "スピアー"
+            }],
+
+        "order": 15,
+        "pal_park_encounters": [
+            {
+            "area": {
+                "name": "forest",
+                "url": "https://pokeapi.co/api/v2/pal-park-area/1/"
+            },
+            "base_score": 70,
+            "rate": 20
+            }
+        ],
+        "pokedex_numbers": [
+            {
+            "entry_number": 15,
+            "pokedex": {
+                "name": "national",
+                "url": "https://pokeapi.co/api/v2/pokedex/1/"
+            }
+            }],
+
+        "shape": {
+            "name": "bug-wings",
+            "url": "https://pokeapi.co/api/v2/pokemon-shape/13/"
+        },
+        "varieties": [
+            {
+                "is_default": true,
+                "pokemon": {
+                    "name": "beedrill",
+                    "url": "https://pokeapi.co/api/v2/pokemon/15/"
+                }
+            },
+            {
+                "is_default": false,
+                "pokemon": {
+                    "name": "beedrill-mega",
+                    "url": "https://pokeapi.co/api/v2/pokemon/10090/"
+                }
+            }
+        ]
+}
