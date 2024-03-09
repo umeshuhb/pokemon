@@ -7,7 +7,7 @@
                         <div class="col-sm-6">
                             <div class="pt-5">
                                 <h1>{{pokemon.name | titlecase}}</h1>
-                                <ul class="list-group list-group-flush my-4" style="width: 24rem;">
+                                <ul class="list-group list-group-flush my-4 basic-detail">
                                     <li class="list-group-item bg-transparent"><span i18n="@@weightLbl">Weight</span> <b
                                         class="float-end">{{pokemon.weight}}</b></li>
                                     
@@ -21,7 +21,7 @@
                         </div>
                         <div class="col-sm-6">
                             <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{pokemon.id}}.png"
-                                alt="" class="img-fluid d-block mx-auto" style="width: 300px;">
+                                alt="" class="img-fluid d-block mx-auto" width="300">
                         </div>
                     </div>
                 </div>
@@ -64,9 +64,9 @@
                                 <h6 class="text-sm-end">{{stat.stat.name | titlecase}}</h6>
                             </div>
                             <div class="col-sm-8">
-                                <div class="progress" style="height: 26px">
+                                <div class="progress">
                                     <div class="progress-bar progress-bar-filled" role="progressbar"
-                                        style="height: 26px;" [style.width]="stat.base_stat + '%'" aria-valuemin="0"
+                                        [style.width]="stat.base_stat + '%'" aria-valuemin="0"
                                         aria-valuemax="100">
                                         <b>{{stat.base_stat}}</b>
                                     </div>
@@ -90,13 +90,13 @@
             </div>
         </div>
 
-        <div class="card mb-3">
+        <div class="card mb-3 moves-card">
             <div class="card-body">
                 <h4 class="card-title" i18n="@@movesLbl">Moves</h4>
             </div>
             <ul class="list-group list-group-flush d-block">
                 <li *ngFor="let move of pokemon.moves" class="list-group-item"
-                    style="width: 33.3%; display: inline-block;">
+                >
                     {{move.move.name | titlecase}}
                 </li>
             </ul>

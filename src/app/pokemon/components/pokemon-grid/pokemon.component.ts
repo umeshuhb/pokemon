@@ -4,6 +4,7 @@ import { PokemonService } from 'src/app/services/pokemon.service';
 import { loadPoekomnList } from '../../store/pokemon.actions';
 import { selectPokemonlistData, selectPokemonlistDataLoading } from '../../store/pokemon.selectors';
 import { Subscription } from 'rxjs';
+import { IPokemonDetail } from '../../pokemon.model';
     
 @Component({
   selector: 'app-pokemon-grid',
@@ -12,19 +13,27 @@ import { Subscription } from 'rxjs';
 })
 export class PokemonGridComponent implements OnInit {
      
-  loading!: boolean;
-  selectPokemonlistData$ = this.store.select(selectPokemonlistData);
-  subscription = new Subscription();
+  public loading!: boolean;
+  public pokemons!: IPokemonDetail[];
+  public subscription = new Subscription();
 
   constructor(
     public pokemonService: PokemonService,
     private store: Store
-   ) { }
+   ) { 
+   }
 
   ngOnInit(): void {
     this.subscription.add(
       this.store.select(selectPokemonlistDataLoading).subscribe( flag => this.loading = flag));
-    this.fetchMoreData();
+
+    this.subscription.add(
+      this.store.select(selectPokemonlistData).subscribe( data => {
+        this.pokemons = data;
+        if(!this.pokemons.length){
+          this.fetchMoreData();
+        }
+      }));
   }
 
   fetchMoreData(): void {

@@ -3,10 +3,12 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/spec",
+    "target": "ES2016",
     "types": [
       "jasmine"
     ]
   },
+
   "include": [
     "src/**/*.spec.ts",
     "src/**/*.d.ts"

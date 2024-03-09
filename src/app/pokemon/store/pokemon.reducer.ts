@@ -5,6 +5,23 @@ import { uniqBy, orderBy } from "lodash";
 
 export const pokemonFeatureKey = 'pokemon';
 
+const getEvolvechains = (evolutions:{id: number; name: string}[], chain: any) => {
+  evolutions.push({
+    id: getId(chain.species.url),
+    name: chain.species.name
+  });
+
+  if (chain.evolves_to.length) {
+    getEvolvechains(evolutions, chain.evolves_to[0]);
+  }
+  return evolutions;
+}
+
+const getId = (url: string): number => {
+  const splitUrl = url.split('/')
+  return +splitUrl[splitUrl.length - 2];
+}
+
 export interface State {
   pokemonData: IPokemonDetail[];
   loading: boolean;
@@ -58,9 +75,26 @@ export const pokemonReducer = createReducer(
           pokemonData: [...state.pokemonData, pokemonsDetails], 
           activePokemon: pokemonsDetails
         //  loading: false,
-        
         }
     }),
+
+    on(PokemonActions.getPokemonEvolutionSuccess, 
+      (state, {pokemonId, pokemonEvolution}):State => 
+      {
+       const evolution = getEvolvechains([], pokemonEvolution.chain);
+       const pokemons = state.pokemonData.map( p => { 
+        if(p.id === pokemonId) { p.evolutions = evolution;}
+        return p;
+      });
+    
+      return {
+        ...state, 
+        pokemonData: [...pokemons],           
+        ...(state.activePokemon && {
+          activePokemon: {...state.activePokemon, evolutions: [...evolution] } 
+        })
+      }
+    }),    
 
     on(PokemonActions.setPokemonAsActive,
       (state, { pokemon }) => ({ ...state, activePokemon: pokemon })

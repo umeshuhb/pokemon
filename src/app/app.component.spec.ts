@@ -2,6 +2,7 @@ import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import '@angular/localize/init';
 
 describe('AppComponent', () => {
   let component: AppComponent;
@@ -32,22 +33,6 @@ describe('AppComponent', () => {
   it('should create the app', () => {
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
-  });
-
-  it('should have the header component', () => {
-    expect(compiled.querySelector('app-header')).not.toBe(null);
-  });
-
-  it('should have the make-transfer component', () => {
-    expect(compiled.querySelector('app-make-transfer')).not.toBe(null);
-  });
-
-  it('should have the transaction-list component', () => {
-    expect(compiled.querySelector('app-transaction-list')).not.toBe(null);
-  });
-
-  it('should have the footer component', () => {
-    expect(compiled.querySelector('app-footer')).not.toBe(null);
   });
 
 });

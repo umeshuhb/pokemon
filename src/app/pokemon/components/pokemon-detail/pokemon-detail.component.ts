@@ -1,10 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription, map } from 'rxjs';
-import { PokemonService } from '../../../services/pokemon.service';
+import { Subscription } from 'rxjs';
 import { IPokemonDetail } from '../../pokemon.model';
 import { Store } from '@ngrx/store';
-import { getPokemonDetails } from '../../store/pokemon.actions';
+import { getPokemonDetails, getPokemonSpecies } from '../../store/pokemon.actions';
 import { selectActivePokemon } from '../../store/pokemon.selectors';
 
 @Component({
@@ -14,19 +13,20 @@ import { selectActivePokemon } from '../../store/pokemon.selectors';
   })
   export class PokemonDetailComponent implements OnInit, OnDestroy {
 
-    pokemon:IPokemonDetail | null = null;
-    pokemonName!:string;
+   public pokemon:IPokemonDetail | null = null;
+   private pokemonName!:string;
 
-    subscription = new Subscription();
+   public subscription = new Subscription();
   
     constructor(
       private route: ActivatedRoute,
-      private pokemonService: PokemonService,
       private store: Store
       ) { }
   
     ngOnInit(): void {
 
+      /*1. 1will be executed on change of active pokemon from subscription and will trigger call for fetching
+      pokemonEvolution -- active pokeomn will be set from below route change code effects (2) */
       this.subscription.add(
         this.store.select(selectActivePokemon).subscribe( activePokemon => {
         this.pokemon = activePokemon;
@@ -35,44 +35,28 @@ import { selectActivePokemon } from '../../store/pokemon.selectors';
           }
       } ));
 
+      /* 2. will be executed on route change and take pokemon name from route and will trigger call for fetching
+      pokemonDetails */
       this.subscription.add(this.route.params.subscribe(params => {
         this.pokemonName = params['name'];
-        this.store.dispatch(getPokemonDetails({pokemonName: params['name']}));
+        if(this.pokemonName && this.pokemonName !== ''){
+          this.store.dispatch(getPokemonDetails({pokemonName: params['name']}));
+        }
       }));
       
     }
   
     getPokemonEvolution() {
-      if (!this.pokemon?.evolutions || !this.pokemon.evolutions.length) {
+      if (this.pokemon && (!this.pokemon.evolutions || !this.pokemon.evolutions.length)) {
         if(this.pokemon) { 
           this.pokemon = {...this.pokemon, evolutions: []};
-          this.pokemonService.getSpecies(this.pokemon.name).subscribe(response => {
-          const id = this.getId(response.evolution_chain.url);
-          this.subscription.add(this.pokemonService.getEvolution(id).subscribe(response => this.getEvolvechains(response.chain)));
-        });
-      }
-      }
-    }
-  
-    getEvolvechains(chain: any) {
-      if(this.pokemon){
-        this.pokemon.evolutions.push({
-          id: this.getId(chain.species.url),
-          name: chain.species.name
-        });
-    
-        if (chain.evolves_to.length) {
-          this.getEvolvechains(chain.evolves_to[0]);
+          this.store.dispatch(getPokemonSpecies({pokemonName: this.pokemon.name}));         
         }
       }
     }
-  
-    getId(url: string): number {
-      const splitUrl = url.split('/')
-      return +splitUrl[splitUrl.length - 2];
-    }
 
     ngOnDestroy(): void {
+      //on destroy remove subscriptions to remove unwanted event subscription
       this.subscription.unsubscribe();
     }
   
