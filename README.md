@@ -42,6 +42,7 @@ Run ng generate component component-name to generate a new component. You can al
 
 ## Run development server with specific language
 ng serve --configuration fr
+
 ng serve --configuration hi 
 
 ## Run Test case
